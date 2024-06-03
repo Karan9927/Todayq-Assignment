@@ -30,6 +30,12 @@ app.use("/api/offerings", offeringsRoutes);
 const transactionRoute = require("../routes/checkout");
 app.use("/api", transactionRoute);
 
+app.use("*", (req, res) => {
+  res.json({
+    message: "Invalid API Request !",
+  });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
