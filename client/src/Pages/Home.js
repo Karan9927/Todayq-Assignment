@@ -17,7 +17,7 @@ const Home = () => {
     console.log(category);
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/offerings/getbyCategory?category=${category}`
+        `https://todayq-assignment-seven.vercel.app/api/offerings/getbyCategory?category=${category}`
       );
       console.log(res.data);
       setOfferings(res.data);
@@ -30,7 +30,7 @@ const Home = () => {
     const fetchOfferings = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/api/offerings/getofferings"
+          "https://todayq-assignment-seven.vercel.app/api/offerings/getofferings"
         );
         console.log(res.data);
         setOfferings(res.data);
@@ -55,8 +55,8 @@ const Home = () => {
 
   return (
     <div className="flex">
-      <div className="w-max border-2 p-5 m-2 rounded-sm flex flex-col">
-        <p className="text-xl font-semibold mb-5 flex flex-col">Categories</p>
+      <div className="flex flex-col p-5 m-2 border-2 rounded-sm w-max">
+        <p className="flex flex-col mb-5 text-xl font-semibold">Categories</p>
         {checkboxes.map((checkbox) => (
           <FormControlLabel
             className=" whitespace-nowrap"
@@ -73,7 +73,7 @@ const Home = () => {
         ))}
       </div>
       <div>
-        <h1 className=" text-2xl m-4 font-semibold">Koinpr Marketplace</h1>
+        <h1 className="m-4 text-2xl font-semibold ">Koinpr Marketplace</h1>
         <ul className="flex flex-wrap">
           {offerings.map((offering) => (
             <OfferCard key={offering._id} offering={offering} />

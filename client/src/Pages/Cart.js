@@ -17,7 +17,7 @@ const Cart = () => {
   const createOrder = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/create-order",
+        "https://todayq-assignment-seven.vercel.app/api/create-order",
         {
           amount: totalPrice,
         }
@@ -46,7 +46,7 @@ const Cart = () => {
       order_id: id,
       handler: async function (response) {
         const tresponse = await axios.post(
-          "http://localhost:3000/api/transactions",
+          "https://todayq-assignment-seven.vercel.app/api/transactions",
           {
             transactionId: response.razorpay_payment_id,
             orderId: response.razorpay_order_id,
@@ -91,12 +91,12 @@ const Cart = () => {
 
   return (
     <div className="my-24">
-      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4">Shopping Cart</h2>
+      <div className="max-w-3xl p-6 mx-auto bg-white rounded-lg shadow-lg">
+        <h2 className="mb-4 text-2xl font-bold">Shopping Cart</h2>
         <div className="space-y-4">
           {cartItems.map((item) => (
             <div
-              className="flex justify-between items-center border-b pb-4"
+              className="flex items-center justify-between pb-4 border-b"
               key={item._id}
             >
               <div className="text-lg">{item.title}</div>
@@ -104,20 +104,20 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="mt-6 flex justify-between items-center">
+        <div className="flex items-center justify-between mt-6">
           <div className="text-xl font-bold">Total</div>
           <div className="text-xl font-bold">$ {totalPrice / 100}</div>{" "}
         </div>
         {!paymentDone && (
           <button
             onClick={createOrder}
-            className="mt-6 w-full bg-blue-500 text-white py-2 rounded-lg text-lg font-semibold hover:bg-blue-600"
+            className="w-full py-2 mt-6 text-lg font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600"
           >
             Checkout
           </button>
         )}
         {paymentDone && (
-          <p className="mt-6 text-center text-green-500 text-lg font-semibold">
+          <p className="mt-6 text-lg font-semibold text-center text-green-500">
             Payment successful! Thank you for your purchase.
           </p>
         )}
